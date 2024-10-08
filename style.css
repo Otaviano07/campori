@@ -1,0 +1,175 @@
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url("https://static.wixstatic.com/media/800ab4_f50532310e2d4d3ab73427f5d6ce4e80~mv2.png/v1/fill/w_1307,h_1233,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/800ab4_f50532310e2d4d3ab73427f5d6ce4e80~mv2.png");
+            background-size: cover;
+            background-position: center;
+            overflow-y: scroll;
+        }
+
+        .elemento-fixo {
+            position: fixed;
+            top: 0;
+            left: 0; /* Se quiser que ocupe toda a largura da tela */
+            width: 100%; /* Se quiser que ocupe toda a largura da tela */
+            background-color: #000000; /* Cor de fundo cinza claro */
+            z-index: 999; /* Garante que o elemento fique acima de outros */
+        }
+
+        .elemento-fixo h4 {
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        h1,
+        label {
+            color: #343a40;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"] {
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 10px;
+            width: 100%;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus {
+            border-color: #007bff;
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+        small {
+            color: #6c757d;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group.col-md-6 {
+            width: 48%;
+        }
+
+        #responsavel,
+        #clube,
+        #embarque,
+        #chegada {
+            background-color: #ffe500;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #responsavel h5,
+        #clube h5,
+        #embarque h5,
+        #chegada h5 {
+            color: #333;
+            font-weight: bold;
+        }
+
+        #responsavel label,
+        #clube label,
+        #embarque label,
+        #chegada label {
+            color: #343a40;
+            font-weight: bold;
+        }
+
+        #buttondbv {
+            position: fixed;
+            bottom: 15px; /* Ajusta a distância da borda inferior da tela */
+            right: 20px; /* Ajusta a distância da borda direita da tela */
+            z-index: 999; /* Garante que o botão fique acima de outros elementos */
+        }
+
+        #buttondbv button {
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #buttondbv button:hover {
+            background-color: #0056b3;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+          }
+          
+        
+          .modal-content {
+            background-color: #f0f0f0;
+            margin: 8% auto; /* Reduced margin to make the modal larger */
+            padding: 30px; /* Increased padding to make the modal larger */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Increased width to make the modal larger */
+            height: 100vh; /* Set a fixed height to make the modal larger */
+            overflow-y: auto; /* Add a scrollbar if the content exceeds the height */
+          }
+          
+          .ok-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          .ok-button:hover {
+            background-color: #3e8e41;
+          }
+
+        @media (max-width: 768px) {
+            .form-group.col-md-6 {
+                width: 100%;
+            }
+        }

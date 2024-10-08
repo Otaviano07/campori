@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <base target="_top" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Font Awesome CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+        <!-- SweetAlert2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet" />
+        
+        <!-- Style -->
+        <link rel="stylesheet" href="style.css">
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+        <!-- Popper.js (deve vir antes do Bootstrap JS) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Jspdf -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0Z963GPXVQ"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0Z963GPXVQ');
+        </script>
+        
+    </head>
+
+
+
+
+    <body>
+        <div class="modal"  style="display: block;">
+            <div class="modal-content">
+                <h1>Olá diretor, tudo bem!</h1>
+                <p>Este site foi desenvolvido para auxiliar os clubes que irão participar do Campori Protagonistas e que precisam da autorização de saída dos desbravadores. Meu obejtivo é facilitar o processo para os clubes.</p>
+                <p>Para que eu possa desenvolver mais soluções como essa, contribua com qualquer doação. Os valores arrecadados serão destinados ao custeio do transporte do Clube Exército da Esperança, da cidade de Russas, rumo ao Campori.</p>
+                <p>Agradecemos seu apoio!</p>
+                <p>Atenciosamente,</p>
+                <p>Diretor Otaviano Silva</p>
+                <button class="ok-button">OK</button>
+            </div>
+        </div>
+
+        <div class="container" style="display: block;">
+            <div class="elemento-fixo">
+                <h4><strong>Autorização de Saída</strong></h4>
+            </div>
+            <div class="form-row" style="margin-top: 50px;">
+                <form id="responsavel" class="form-group col-md-12">
+                    <div class="form-row d-flex justify-content-between align-items-center">
+                        <h5><strong>Dados Responsável</strong></h5>
+                        <button type="button" class="btn btn-danger" onclick="limpar('responsavel')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="nomerespon"><strong>Nome Completo:</strong></label>
+                            <input class="form-control required" type="text" id="nomerespon" name="nomerespon" maxlength="50" placeholder="Nome Completo do responsável legal" oninput="capitalizarPalavras(this);" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="rgrespon"><strong>RG Nº:</strong></label>
+                            <input class="form-control required" type="tel" id="rgrespon" name="rgrespon" maxlength="13" placeholder="RG Nº do responsável legal" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="orgaorespon"><strong>Órgão Expedidor:</strong></label>
+                            <input class="form-control required" type="text" id="orgaorespon" name="orgaorespon" maxlength="15" placeholder="Órgão Expedidor do responsável legal" oninput="this.value = this.value.toUpperCase()" />
+                        </div>                        
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="cpfrespon"><strong>CPF:</strong></label>
+                            <input class="form-control required" type="tel" id="cpfrespon" name="cpfrespon" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" inputmode="numeric" maxlength="14" placeholder="XXX.XXX.XXX-XX" />
+                            <small id="cpf-validation-message"></small>
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="contato1repons"><strong>Contato 1:</strong></label>
+                            <input type="tel" class="form-control required" id="contato1repons" minlength="16" maxlength="16" placeholder="(XX) X XXXX-XXXX" name="contato1repons" oninput="formatarContato(this, event)" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="contato2repons"><strong>Contato 2:</strong></label>
+                            <input type="tel" class="form-control required" id="contato2repons" minlength="16" maxlength="16" placeholder="(XX) X XXXX-XXXX" name="contato2repons" oninput="formatarContato(this, event)" />
+                        </div>
+                    </div>
+                </form>
+
+                <form id="clube" class="form-group col-md-12" style="margin-top: 20px;">
+                    <div class="form-row d-flex justify-content-between align-items-center">
+                        <h5><strong>Dados Clube</strong></h5>
+                        <button type="button" class="btn btn-danger" onclick="limpar('clube')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="nomedbv"><strong>Nome Completo do Desbravador:</strong></label>
+                            <input class="form-control required" type="text" id="nomedbv" name="nomedbv" maxlength="50" placeholder="Nome Completo do desbravador" oninput="capitalizarPalavras(this);" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="nomeclube"><strong>Nome Clube:</strong></label>
+                            <input class="form-control required" type="text" id="nomeclube" name="nomeclube" maxlength="50" placeholder="Nome do clube" oninput="capitalizarPalavras(this);" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="nomeigreja"><strong>Nome Igreja:</strong></label>
+                            <input class="form-control required" type="text" id="nomeigreja" name="nomeigreja" maxlength="50" placeholder="Nome da igreja" oninput="capitalizarPalavras(this);" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="estado"><strong>Estado do Clube:</strong></label>
+                            <select class="form-control required" id="estado" name="estado">
+                                <option value="">Selecione um estado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="cidade"><strong>Cidade do Clube:</strong></label>
+                            <select class="form-control required" id="cidade" name="cidade">
+                                <option value="">Selecione uma cidade</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="diretor"><strong>Nome Completo do Diretor:</strong></label>
+                            <input class="form-control required" type="text" id="diretor" name="diretor" maxlength="35" placeholder="Nome Completo do diretor" oninput="capitalizarPalavras(this);" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="associado"><strong>Nome Completo do Diretor Associado:</strong></label>
+                            <input class="form-control required" type="text" id="associado" name="associado" maxlength="35" placeholder="Nome Completo do diretor associado" oninput="capitalizarPalavras(this);" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="associada"><strong>Nome Completo da Diretora Associada:</strong></label>
+                            <input class="form-control required" type="text" id="associada" name="associada" maxlength="35" placeholder="Nome Completo da diretora associada" oninput="capitalizarPalavras(this);" />
+                        </div>
+                    </div>
+                </form>
+
+                <form id="embarque" class="form-group col-md-12" style="margin-top: 20px;">
+                    <div class="form-row d-flex justify-content-between align-items-center">
+                        <h5><strong>Dados Embarque</strong></h5>
+                        <button type="button" class="btn btn-danger" onclick="limpar('embarque')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="dataembarque"><strong>Data de Embarque:</strong></label>
+                            <input class="form-control required" type="tel" id="dataembarque" name="dataembarque" placeholder="DD/MM/AAAA" maxlength="10" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="horaembarque"><strong>Hora de Embarque:</strong></label>
+                            <input class="form-control required" type="tel" id="horaembarque" name="horaembarque" placeholder="HH:MM" maxlength="5" oninput="formatarHora(this)" />
+                        </div>
+
+                        <div class="form-group col-md-12" style="margin-top: 20px;">
+                            <label for="localembarque"><strong>Local de Embarque:</strong></label>
+                            <input class="form-control required" type="text" id="localembarque" name="localsaida" maxlength="35" placeholder="Local de saída" oninput="capitalizarPalavras(this);" />
+                        </div>
+                    </div>
+                </form>
+
+                <form id="chegada" class="form-group col-md-12" style="margin-top: 20px;">
+                    <div class="form-row d-flex justify-content-between align-items-center">
+                        <h5><strong>Dados Chegada</strong></h5>
+                        <button type="button" class="btn btn-danger" onclick="limpar('chegada')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="datachegada"><strong>Data de Chegada:</strong></label>
+                            <input class="form-control required" type="tel" id="datachegada" name="datachegada" placeholder="DD/MM/AAAA" maxlength="10" />
+                        </div>
+
+                        <div class="form-group col-md-6" style="margin-top: 20px;">
+                            <label for="horachegada"><strong>Hora de Chegada:</strong></label>
+                            <input class="form-control required" type="tel" id="horachegada" name="horachegada" placeholder="HH:MM" maxlength="5" oninput="formatarHora(this)" />
+                        </div>
+
+                        <div class="form-group col-md-12" style="margin-top: 20px;">
+                            <label for="localchegada"><strong>Local de Chegada:</strong></label>
+                            <input class="form-control required" type="text" id="localchegada" name="localchegada" maxlength="35" placeholder="Local de chegada" oninput="capitalizarPalavras(this);" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <img id="templante" src="https://raw.githubusercontent.com/Otaviano07/estudandoaverdade/refs/heads/main/img/Autorizac%CC%A7a%CC%83o_Viagem_PROTAGONISTAS.png" alt="Imagem 1" style="display: none;" />
+
+            <div id="buttondbv" class="form-row">
+                <button type="submit" class="btn btn-success" id="btnGerar" style="display: none;" onclick="verificarDados()">Gerar</button>
+            </div>
+        </div>
+
+        
+    </body>
+
+    <script src="javascript.js"></script>
+
+</html>
