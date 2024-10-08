@@ -1,4 +1,4 @@
-# Campori Protagonistas - Autorização de Saída
+# Campori - Autorização de Saída
 
 **Sobre o Projeto**
 
